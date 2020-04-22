@@ -58,7 +58,7 @@ void multiply2(int msize, int tidx, int numt, TYPE a[][NUM], TYPE b[][NUM], TYPE
     int i;
 
     // Parallel with merged outer loops
-    #pragma omp parallel for collapse (2)
+    #pragma omp parallel for collapse(2)
     for(i=0; i<msize; i++) {
         for(int j=0; j<msize; j++) {
             for(int k=0; k<msize; k++) {

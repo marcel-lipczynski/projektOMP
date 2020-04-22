@@ -142,8 +142,8 @@ int main()
 
 	flops = TRIP_COUNT * FLOP_PER_ITERATION;
 	mflops = flops / 1000000.0f / secs;
-	//printf("Execution time = %2.3lf seconds\n",secs);	fflush(stdout);
-	//printf("MFLOPS: %2.3f mflops\n", mflops);
+	printf("Execution time = %2.3lf seconds\n",secs);	fflush(stdout);
+	printf("MFLOPS: %2.3f mflops\n", mflops);
 
 // print simple test case of data to be sure multiplication is correct
   if (NUM < 5) {

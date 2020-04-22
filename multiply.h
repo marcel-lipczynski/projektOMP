@@ -19,7 +19,7 @@
 */
 #define USE_OMP
 
-#define MAXTHREADS 16
+#define MAXTHREADS 8
 #define NUM 2048
 #define MATRIX_BLOCK_SIZE 64
 
@@ -28,7 +28,7 @@ typedef TYPE array[NUM];
 
 // Select which multiply kernel to use via the following macro so that the
 // kernel being used can be reported when the test is run.
-#define MULTIPLY multiply3
+#define MULTIPLY multiply1
 
 extern void multiply0(int msize, int tidx, int numt, TYPE a[][NUM], TYPE b[][NUM], TYPE c[][NUM], TYPE t[][NUM]);
 extern void multiply1(int msize, int tidx, int numt, TYPE a[][NUM], TYPE b[][NUM], TYPE c[][NUM], TYPE t[][NUM]);

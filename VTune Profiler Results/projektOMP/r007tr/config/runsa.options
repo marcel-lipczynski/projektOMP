@@ -1,0 +1,19 @@
+-r
+C:\Users\lipcz\Desktop\projektOMP\VTune Profiler Results\projektOMP\r007tr
+--itt-config=frame
+--collector=vtsspp
+--sys-config=cswitch
+--data-limit-mb=1000
+--disk-space-limit=0
+--mrte-type=java,dotnet
+--itt-config=openmp
+--gpu-profiling-type=none
+--event-config=CPU_CLK_UNHALTED.THREAD:sa=3500000,CPU_CLK_UNHALTED.REF_TSC:sample:sa=3500000,INST_RETIRED.ANY:sample:sa=3500000,CPU_CLK_UNHALTED.REF_XCLK:sa=100003,CPU_CLK_UNHALTED.ONE_THREAD_ACTIVE:sa=100003,UOPS_RETIRED.RETIRE_SLOTS:sample:sa=2000003
+--platform-type=103
+--uncore-sampling-interval=10
+--mrte-mode=auto
+--itt-config=task,event,counter
+--etw-config=clr,js
+--p-state-trigger=CPU_CLK_UNHALTED.REF_TSC
+--
+C:\Users\lipcz\Desktop\projektOMP\Release\projektOMP.exe
