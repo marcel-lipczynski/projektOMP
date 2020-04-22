@@ -61,7 +61,7 @@ void print_arr(char *name, TYPE array[][NUM])
   }
 }
 
-int main()
+int main1()
 {
 	clock_t start=0.0, stop=0.0;
 	double secs;

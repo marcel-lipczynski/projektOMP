@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FirstConceptSolution.cpp" />
     <ClCompile Include="matrix.c" />
     <ClCompile Include="multiply.c" />
     <ClCompile Include="projektOMP.cpp" />
