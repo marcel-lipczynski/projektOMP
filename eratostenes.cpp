@@ -4,8 +4,10 @@
 #include <time.h>
 #include <omp.h>
 
-#define M 10
+#define M 800000000
 #define N 1000000000
+
+#define TYPE_OF_ALGORITHM 1
 
 using namespace std;
 
@@ -29,50 +31,59 @@ int main() {
 	cout << "upper bound: " << N << "\n";
 	sqrt_bound = sqrt(N);
 	primes = new bool[sqrt_bound + 1];
+	tab = new bool[N + 1];
 
 	clock_t start, stop;
 	double omp_start = omp_get_wtime();
 
 	start = clock();
 
-	if (M >= sqrt_bound) {
-		for (int i = 2; i <= sqrt_bound; i++) {
-			primes[i] = 0;
+	if (TYPE_OF_ALGORITHM == 1) {
+		if (M >= sqrt_bound) {
+			for (int i = 2; i <= sqrt_bound; i++) {
+				primes[i] = 0;
+			}
+			eratostenes(primes, sqrt_bound);
 		}
-		eratostenes(primes, sqrt_bound);
-	}
 
-	tab = new bool[N + 1];
-
-	if (M >= sqrt_bound) {
-		for (int i = 2; i <= N; i++) {
-			tab[i] = 0;
-		}
-		for (int i = 0; i <= sqrt_bound; i++) {
-			if (primes[i] == 0) {
-				int start = M / i;
-				start = start * i == M ? start * i : start * i + i;
-				for (int j = start; j <= N; j += i) {
-					tab[j] = 1;
+		if (M >= sqrt_bound) {
+			for (int i = 2; i <= N; i++) {
+				tab[i] = 0;
+			}
+			for (int i = 0; i <= sqrt_bound; i++) {
+				if (primes[i] == 0) {
+					int start = M / i;
+					start = start * i == M ? start * i : start * i + i;
+					for (int j = start; j <= N; j += i) {
+						tab[j] = 1;
+					}
+				}
+			}
+			for (int i = M; i <= N; i++) {
+				if (tab[i] == 0) {
+					cout << i << "\t";
 				}
 			}
 		}
-		for (int i = M; i <= N; i++) {
-			if (tab[i] == 0) {
-				cout << i << "\t";
+		else {
+			for (int i = 2; i <= N; i++) {
+				tab[i] = 0;
 			}
+			eratostenes(tab, N);
+			/*for (int i = M; i <= N; i++) {
+				if (tab[i] == 0) {
+					cout << i << "\t";
+				}
+			}*/
 		}
 	}
 	else {
-		for (int i = 2; i <= N; i++) {
+		for (int i = 2; i <= N; i++) 
 			tab[i] = 0;
-		}
+
 		eratostenes(tab, N);
-		/*for (int i = M; i <= N; i++) {
-			if (tab[i] == 0) {
-				cout << i << "\t";
-			}
-		}*/
+
+		delete[]tab;
 	}
 
 	stop = clock();
