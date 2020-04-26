@@ -20,20 +20,23 @@ void erato(bool* tab, unsigned int n) {
 }
 
 void parallel_erato(long long lowerBound, long long upperBound) {
-	//omp_set_num_threads(4);
+	omp_set_num_threads(4);
 	long long sqrtBound = sqrt(upperBound);
 	bool* tab = new bool[upperBound + 1];
 
-	//#pragma omp parallel for
-	for (long long i = 0; i <= upperBound; i++) {
-		tab[i] = 1;
-	}
+#pragma omp parallel 
+	{
+#pragma omp for
+		for (long long i = 0; i <= upperBound; i++) {
+			tab[i] = 1;
+		}
 
-	//#pragma omp parallel for schedule(dynamic)
-	for (long long i = 2; i <= sqrtBound; i++) {
-		if (tab[i]) {
-			for (long long j = i * i; j <= upperBound; j += i) {
-				tab[j] = 0;
+#pragma omp for schedule(dynamic)
+		for (long long i = 2; i <= sqrtBound; i++) {
+			if (tab[i]) {
+				for (long long j = i * i; j <= upperBound; j += i) {
+					tab[j] = 0;
+				}
 			}
 		}
 	}
@@ -154,7 +157,8 @@ void parallel_erato_block(long long lowerBound, long long upperBound, long long 
 int main() {
 	double omp_start = omp_get_wtime();
 	//parallel_erato_block(500000000, 1000000000, 125000000);
-	parallel_erato_imp(500000000, 1000000000);
+	//parallel_erato_imp(500000000, 1000000000);
+	parallel_erato(500000000, 1000000000);
 	double omp_stop = omp_get_wtime();
 	printf("\nCzas rzeczywisty wynosi %f sekund\n", ((double)(omp_stop - omp_start)));
 }
